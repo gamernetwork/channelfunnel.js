@@ -1,0 +1,7 @@
+database:
+    engine: 'pg'
+    host: 'localhost'
+    name: 'eurofunnel'
+    password: 'poop'
+    user: 'mark'
+    

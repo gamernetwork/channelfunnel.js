@@ -1,0 +1,22 @@
+{
+    "name": "aggrotode",
+    "description": "An aggregator frontend",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "3.X",
+        "connect": "2.5.X",
+        "express-params": "X",
+        "swig": "0.13.X",
+        "async": "0.1.X",
+        "config": "0.4.X",
+        "mysql": "0.9.X",
+        "pg": "0.8.X",
+        "node-dbi": "0.6.X",
+        "consolidate": "0.4.X",
+        "reversable-router": "X"
+    },
+    "~dependencies": {
+        "sqlite3": "2.1.X"
+    }
+}
