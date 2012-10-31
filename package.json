@@ -12,6 +12,9 @@
         "config": "0.4.X",
         "mysql": "0.9.X",
         "pg": "0.8.X",
+        "send": "X",
+        "stylus": "X",
+        "xregexp": "X",
         "node-dbi": "0.6.X",
         "consolidate": "0.4.X",
         "reversable-router": "X"

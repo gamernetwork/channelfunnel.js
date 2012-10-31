@@ -8,13 +8,14 @@
 		{#<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>#}
         {#{% include_media "channelfunnel.css" %}
         {% include_media "channelfunnel.js" %}#}
+        <link rel="stylesheet" type="text/css" href="/styles/eurofunnel.css" />
     </head>
     <body>
         <div id="maincol">
             <h1>The Eurogamer Network Content Funnel</h1>
             <form method="GET" id="search" action="{{ url( 'search' ) }}">
                 <input title="Search terms" name="term" id="term" type="text" value="{{ term }}" placeholder="Search" class="ui-widget empty" />
-                <button type="submit" title="Search"><img src="{#{% media_url 'img/search.png' %}#}" width="16" height="16" alt="Search"/></button>
+                <button type="submit" title="Search"><img src="img/search.png" width="16" height="16" alt="Search"/></button>
                 <script>
                     var cache = new Array();
                     $("#term").autocomplete( {

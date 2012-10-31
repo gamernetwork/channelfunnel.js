@@ -6,18 +6,20 @@ var express = require('express'),
     connect = require('connect'),
     async = require('async'),
     pg = require('pg'),
+    XRegExp = require('xregexp').XRegExp,
     Router = require('reversable-router');
 
 var funnel = require('./funnel.js');
 
 var app = express();
 
-app.use( connect.favicon( 'static/img/favicon.ico' ) ); //if pass custom favicon as path if you want (must be ico)
-app.use( connect.logger('tiny') );
-app.use( connect.errorHandler() );
-
-var router = new Router();
-
+app.set('views', './views');
+app.use( express.favicon( 'static/img/favicon.ico' ) ); //if pass custom favicon as path if you want (must be ico)
+app.use( express.logger('dev') );
+app.use( express.errorHandler() );
+app.use( express.bodyParser() );
+app.engine( '.html', cons.swig );
+//app.set( 'view engine', 'html' );
 app.locals( {
     'debug': true,
     'version': function() {
@@ -26,9 +28,10 @@ app.locals( {
     router: router
 } );
 
+var router = new Router();
 
-app.engine( '.html', cons.swig );
-//app.set( 'view engine', 'html' );
+
+
 dbconf = {
     user: config.database.user,
     password: config.database.password,
@@ -47,7 +50,6 @@ swig.init( {
         router: router,
     }
 } );
-app.set('views', './views');
 
 function click( req, res, next ) {
     res.render( 'full_list.html', {} );
@@ -90,6 +92,8 @@ app.get( '/search', "search", searchy );
 app.get( '/new/:since', "newstuff", newstuff );
 app.get( '/', "home", home );
 
+app.use(require('stylus').middleware(__dirname + '/static'));
+app.use( express.static( __dirname + "/static" ) );
 
 port = 3000;
 app.listen( port );

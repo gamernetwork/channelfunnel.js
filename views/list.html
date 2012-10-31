@@ -9,7 +9,8 @@
             </cite>/
             <div class="wrap">
                 <div class="summary">
-                    {{ article.summary|striptags|truncatewords:60|linebreaks }}
+                    {#{{ article.summary|striptags|truncatewords:60|linebreaks }}#}
+                    {{ article.summary|striptags }}
                 </div>
             </div>
             <div class="meta">
