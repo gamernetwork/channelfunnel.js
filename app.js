@@ -5,7 +5,7 @@ var express = require('express'),
     swig = require('swig'),
     connect = require('connect'),
     async = require('async'),
-    pg = require('pg'),
+    dbi = require('node-dbi'),
     XRegExp = require('xregexp').XRegExp,
     Router = require('reversable-router');
 
@@ -33,11 +33,12 @@ var router = new Router();
 
 
 dbconf = {
+    host: config.database.host,
     user: config.database.user,
     password: config.database.password,
     database: config.database.name
 };
-db = new pg.Client( dbconf);
+db = new dbi.DBWrapper( 'pg', dbconf);
 db.connect();
 fi = new funnel.Funnel( db );
 
@@ -70,12 +71,11 @@ function newstuff( req, res, next ) {
     res.render( 'full_list.html', {} );
 }
 function home( req, res, next ) {
-    fi.listArticles( function( err, dbres ) {
-        console.log( 'list some articles' );
+    fi.listArticles( 20, function( err, dbres ) {
         if( err ) {
             console.log( err );
         } else {
-            rows = dbres.rows;
+            rows = dbres;
             res.render( 'full_list.html', { article_list: rows } );
         }
     } );
